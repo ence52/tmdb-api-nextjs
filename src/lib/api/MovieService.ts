@@ -2,9 +2,10 @@ import { Result } from "@/types/Movie";
 import { Credits } from "@/types/MovieCredits";
 import { MovieDetails } from "@/types/MovieDetails";
 import axios from "axios";
+import { API_URL } from "./Constants";
 
 const axiosClient = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL,
+  baseURL: API_URL,
   headers: {
     Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_KEY}`,
     "Content-Type": "application/json",

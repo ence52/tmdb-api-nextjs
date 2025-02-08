@@ -7,6 +7,7 @@ import { useParams } from "next/navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHourglass3, faStar } from "@fortawesome/free-solid-svg-icons";
 import { Credits, Crew } from "@/types/MovieCredits";
+import { API_ORIGINAL_PHOTO_URL } from "@/lib/api/Constants";
 
 const MovieDetailsPage = () => {
   const { id } = useParams();
@@ -66,17 +67,13 @@ const MovieDetailsPage = () => {
           alt={details.title}
           sizes="lg"
           className="object-cover rounded-2xl shadow-lg "
-          src={
-            process.env.NEXT_PUBLIC_API_ORIGINAL_PHOTO_URL + details.poster_path
-          }
+          src={API_ORIGINAL_PHOTO_URL + details.poster_path}
           fill
         />
       </div>
       <div className="col-span-3 row-span-1 flex items-center px-4">
         {/* Title */}
-        <p className="text-4xl tracking-wider font-semibold">
-          {details.original_title}
-        </p>
+        <p className="text-4xl tracking-wider font-semibold">{details.title}</p>
       </div>
       {/* Info */}
       <div className="col-span-2 row-span-4 md:py-0  py-4 tracking-wider space-y-4 px-4">

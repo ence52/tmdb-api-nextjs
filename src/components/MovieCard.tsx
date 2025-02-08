@@ -2,6 +2,7 @@ import { Movie } from "@/types/Movie";
 import React, { FC } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { API_PHOTO_URL } from "@/lib/api/Constants";
 
 const MovieCard: FC<{ movie: Movie }> = ({ movie }) => {
   return (
@@ -12,7 +13,7 @@ const MovieCard: FC<{ movie: Movie }> = ({ movie }) => {
             alt={movie.title}
             sizes="lg"
             className="object-cover rounded-t-2xl"
-            src={`${process.env.NEXT_PUBLIC_API_PHOTO_URL}${movie.poster_path}`}
+            src={`${API_PHOTO_URL}${movie.poster_path}`}
             fill
           />
         </div>
