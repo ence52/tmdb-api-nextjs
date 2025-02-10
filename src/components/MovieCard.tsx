@@ -12,6 +12,8 @@ const MovieCard: FC<{ movie: Movie }> = ({ movie }) => {
           <Image
             alt={movie.title}
             sizes="lg"
+            priority
+            unoptimized
             className="object-cover rounded-t-2xl"
             src={
               movie.poster_path === null

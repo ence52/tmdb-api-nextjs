@@ -42,6 +42,7 @@ const SearchBar = () => {
         <Image
           className=" h-12 w-12 rounded-full"
           alt="avatar"
+          unoptimized
           src={"/images/avatar.jpg"}
           width={100}
           height={100}

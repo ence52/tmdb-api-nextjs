@@ -66,6 +66,8 @@ const MovieDetailsPage = () => {
         <Image
           alt={details.title}
           sizes="lg"
+          priority
+          unoptimized
           className="object-cover rounded-2xl shadow-lg "
           src={API_ORIGINAL_PHOTO_URL + details.poster_path}
           fill
