@@ -16,6 +16,7 @@ const Search = () => {
       if (!query) return;
 
       const res = await fetchSearchMovies(query);
+
       setMovies(res);
     };
     fetchSearch();
@@ -25,10 +26,16 @@ const Search = () => {
   }, [query]);
 
   return (
-    <div className="grid grid-cols-5 gap-4 py-10">
-      {movies.map((i) => (
-        <MovieCard key={i.id} movie={i} />
-      ))}
+    <div className="w-full h-full content-center text-center">
+      {movies.length === 0 ? (
+        <p className="text-2xl">Film not found</p>
+      ) : (
+        <div className="grid md:grid-cols-5 grid-cols-2  md:gap-4 gap-2 py-10">
+          {movies.map((movie, i) => (
+            <MovieCard key={i} movie={movie} />
+          ))}
+        </div>
+      )}
     </div>
   );
 };

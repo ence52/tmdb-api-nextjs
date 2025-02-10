@@ -34,16 +34,16 @@ const MovieDetailsPage = () => {
 
     fetchData();
   }, [id]);
-
+  if (isLoading) {
+    <div>LOADING</div>;
+  }
   if (!details) {
     return <div className="col-span-5">Error loading movie details.</div>;
   }
   if (!credits) {
     return <div className="col-span-5">Error loading movie credits.</div>;
   }
-  if (isLoading) {
-    <div>LOADING</div>;
-  }
+
   //Credits constants
   const directorInfo = credits.crew.find(
     (person: Crew) => person.job === "Director"
@@ -60,9 +60,9 @@ const MovieDetailsPage = () => {
   };
 
   return (
-    <div className="col-span-5 px-4 py-14 md:px-10 md:grid grid-cols-4 grid-rows-5">
+    <div className="col-span-5 px-2 py-14 md:px-10 md:grid grid-cols-4 grid-rows-5 ">
       {/* Poster Photo */}
-      <div className="col-span-1 row-span-5 aspect-[2/3] w-full relative ">
+      <div className="col-span-1 row-span-5 aspect-[2/3] w-full relative">
         <Image
           alt={details.title}
           sizes="lg"
@@ -71,12 +71,14 @@ const MovieDetailsPage = () => {
           fill
         />
       </div>
-      <div className="col-span-3 row-span-1 flex items-center px-4">
+      <div className="col-span-3 row-span-1 flex items-center md:px-4 ">
         {/* Title */}
-        <p className="text-4xl tracking-wider font-semibold">{details.title}</p>
+        <p className="text-4xl  tracking-wider font-semibold">
+          {details.title}
+        </p>
       </div>
       {/* Info */}
-      <div className="col-span-2 row-span-4 md:py-0  py-4 tracking-wider space-y-4 px-4">
+      <div className="col-span-2 row-span-4 md:py-0  py-4 tracking-wider space-y-4 md:px-4">
         {/* Genres */}
         <div className="flex flex-wrap md:flex-none gap-x-3 gap-y-2">
           {details.genres.map((i) => (
@@ -119,17 +121,17 @@ const MovieDetailsPage = () => {
       {/* Credits */}
       <div className=" col-span-1 row-span-4 text-lg  justify-between  grid grid-cols-1 grid-rows-3">
         {/* Director */}
-        <div className="row-span-1 px-4 py-3 justify-between border-b-[1px] border-themeGray">
+        <div className="row-span-1 md:px-4 py-3 justify-between border-b-[1px] border-themeGray">
           <p className="font-semibold">Director</p>
           <div className="tracking-wider">{directorInfo?.name}</div>
         </div>
         {/* Writers */}
-        <div className="row-span-1 px-4 py-3 justify-between  border-b-[1px] border-themeGray">
+        <div className="row-span-1 md:px-4 py-3 justify-between  border-b-[1px] border-themeGray">
           <p className="font-semibold">Writers</p>
           <div className="tracking-wider">{writerInfo?.name}</div>
         </div>
         {/* Stars */}
-        <div className="row-span-1 px-4 py-3 justify-between  border-b-[1px] border-themeGray">
+        <div className="row-span-1 md:px-4 py-3 justify-between  border-b-[1px] border-themeGray">
           <p className="font-semibold">Stars</p>
           <div className="tracking-wider">
             {starsInfo?.map((i) => (

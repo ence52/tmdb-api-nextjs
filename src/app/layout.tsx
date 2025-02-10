@@ -95,7 +95,7 @@ export default function RootLayout({
             </div>
           </div>
         </div>
-        <div className="col-span-5">
+        <div className="col-span-5 md:px-10 px-2">
           <SearchBar />
           {children}
         </div>
