@@ -13,7 +13,11 @@ const MovieCard: FC<{ movie: Movie }> = ({ movie }) => {
             alt={movie.title}
             sizes="lg"
             className="object-cover rounded-t-2xl"
-            src={`${API_PHOTO_URL}${movie.poster_path}`}
+            src={
+              movie.poster_path === null
+                ? "/images/no_image_placeholder.svg"
+                : `${API_PHOTO_URL}${movie.poster_path}`
+            }
             fill
           />
         </div>

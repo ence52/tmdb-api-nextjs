@@ -14,6 +14,7 @@ import {
   faUser,
   faUserAlt,
 } from "@fortawesome/free-solid-svg-icons";
+import SearchBar from "@/components/SearchBar";
 
 const workSans = Work_Sans({
   variable: "--font-geist-sans",
@@ -94,7 +95,10 @@ export default function RootLayout({
             </div>
           </div>
         </div>
-        <div className="col-span-5"> {children}</div>
+        <div className="col-span-5">
+          <SearchBar />
+          {children}
+        </div>
       </body>
     </html>
   );
