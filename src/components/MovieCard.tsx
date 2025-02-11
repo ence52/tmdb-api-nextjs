@@ -2,7 +2,7 @@ import { Movie } from "@/types/Movie";
 import React, { FC } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { API_PHOTO_URL } from "@/lib/api/Constants";
+import { API_W300_PHOTO_URL } from "@/services/Constants";
 
 const MovieCard: FC<{ movie: Movie }> = ({ movie }) => {
   return (
@@ -18,7 +18,7 @@ const MovieCard: FC<{ movie: Movie }> = ({ movie }) => {
             src={
               movie.poster_path === null
                 ? "/images/no_image_placeholder.svg"
-                : `${API_PHOTO_URL}${movie.poster_path}`
+                : `${API_W300_PHOTO_URL}${movie.poster_path}`
             }
             fill
           />

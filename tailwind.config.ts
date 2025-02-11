@@ -11,6 +11,7 @@ export default {
     extend: {
       height: {
         "128": "32rem",
+        "144": "36rem",
       },
       colors: {
         background: "var(--background)",

@@ -1,6 +1,6 @@
 "use client";
 import MovieCard from "@/components/MovieCard";
-import { fetchSearchMovies } from "@/lib/api/SearchService";
+import { fetchSearchMovies } from "@/services/SearchService";
 import { Movie } from "@/types/Movie";
 import { useSearchParams } from "next/navigation";
 import React, { Suspense, useEffect, useState } from "react";
@@ -12,9 +12,8 @@ const Search = () => {
 
   useEffect(() => {
     const controller = new AbortController();
+    if (!query) return;
     const fetchSearch = async () => {
-      if (!query) return;
-
       const res = await fetchSearchMovies(query);
 
       setMovies(res);

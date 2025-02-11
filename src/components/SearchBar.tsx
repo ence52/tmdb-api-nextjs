@@ -12,16 +12,21 @@ import React, { useEffect, useState } from "react";
 const SearchBar = () => {
   const [query, setQuery] = useState("");
   const router = useRouter();
+  const [isClient, setIsClient] = useState(false);
   useEffect(() => {
+    setIsClient(true);
     if (query === "") {
       router.replace("/");
     }
 
     if (query.trim()) {
-      router.push(`/search?q=${encodeURIComponent(query)}`);
+      router.push(`/search?q=${query}`);
     }
   }, [query]);
 
+  if (!isClient) {
+    return null;
+  }
   return (
     <div className="flex flex-col-reverse md:flex-row md:space-x-8 space-y-4 md:space-y-0 items-center bg-themeBlack   md:pt-12">
       <div className="relative w-full ">

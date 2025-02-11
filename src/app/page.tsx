@@ -1,9 +1,10 @@
 "use client";
 import {
+  fetchNowOnCinemasMovies,
   fetchPopularMovies,
   fetchTrendMovies,
   fetchUpcomingMovies,
-} from "@/lib/api/MovieService";
+} from "@/services/MovieService";
 import { Movie } from "@/types/Movie";
 import React, { useEffect, useState } from "react";
 
@@ -12,19 +13,24 @@ const Main = () => {
   const [movies, setPopularMovies] = useState<Movie[]>([]);
   const [movies2, setTrendingMovies] = useState<Movie[]>([]);
   const [movies3, setUpcomingMovies] = useState<Movie[]>([]);
+  const [movies4, setNowPlayingMovies] = useState<Movie[]>([]);
   const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const popular = await fetchPopularMovies();
-        const trending = await fetchTrendMovies();
-        const upcoming = await fetchUpcomingMovies();
+        const [popular, trending, upcoming, now_playing] = await Promise.all([
+          fetchPopularMovies(),
+          fetchTrendMovies(),
+          fetchUpcomingMovies(),
+          fetchNowOnCinemasMovies(),
+        ]);
 
-        setPopularMovies(popular.results);
-        setTrendingMovies(trending.results);
-        setUpcomingMovies(upcoming.results);
+        if (popular?.results) setPopularMovies(popular.results);
+        if (trending?.results) setTrendingMovies(trending.results);
+        if (upcoming?.results) setUpcomingMovies(upcoming.results);
+        if (now_playing?.results) setNowPlayingMovies(now_playing.results);
       } catch (error) {
         console.error("Error fetching movie details:", error);
       } finally {
@@ -36,13 +42,14 @@ const Main = () => {
   }, []);
 
   if (isLoading) {
-    <div>LOADING</div>;
+    return <div>LOADING</div>;
   }
   return (
     <div className="flex flex-col">
       <MovieSlider title="Popular Movies" movies={movies} />
       <MovieSlider title="Trending Movies" movies={movies2} />
       <MovieSlider title="Upcoming Movies" movies={movies3} />
+      <MovieSlider title="Now Playing" movies={movies4} />
     </div>
   );
 };
