@@ -12,7 +12,7 @@ const CastSlider = () => {
   return (
     <>
       {credits.cast.length > 0 && (
-        <div className=" space-y-4  md:pr-10 pt-6 ">
+        <div className=" space-y-4  md:pr-10 pt-6">
           <p className="text-2xl font-bold">Cast</p>
           {
             <Swiper

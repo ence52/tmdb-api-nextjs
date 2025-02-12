@@ -4,6 +4,7 @@ import { MovieDetails } from "@/types/MovieDetails";
 import { axiosClient } from "./Constants";
 import { MovieImages } from "@/types/MovieImages";
 import { Keyword, MovieKeywords } from "@/types/MovieKeywords";
+import { MovieVideos, VideoResult } from "@/types/MovieVideos";
 
 export const fetchPopularMovies = async (): Promise<Result> => {
   try {
@@ -78,5 +79,13 @@ export const fetchMovieKeywordsById = async (
     return response.data.keywords;
   } catch {
     throw new Error(`Failed to fetch movie keywords for ID: ${id}.`);
+  }
+};
+export const fetchMovieVideos = async (id: number): Promise<VideoResult[]> => {
+  try {
+    const response = await axiosClient.get<MovieVideos>(`/movie/${id}/videos`);
+    return response.data.results;
+  } catch {
+    throw new Error(`Failed to fetch movie videos for ID: ${id}.`);
   }
 };

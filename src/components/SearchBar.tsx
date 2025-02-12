@@ -22,7 +22,7 @@ const SearchBar = () => {
     if (query.trim()) {
       router.push(`/search?q=${query}`);
     }
-  }, [query]);
+  }, [query, router]);
 
   if (!isClient) {
     return null;

@@ -9,7 +9,9 @@ const TitleComponent = () => {
   return (
     <div className="col-span-3 row-span-1 flex items-center md:px-4 ">
       {/* Title */}
-      <p className="text-4xl  tracking-wider font-semibold">{details.title}</p>
+      <p className="text-4xl  tracking-wider font-semibold">
+        {details.title} ({details.release_date.slice(0, 4)})
+      </p>
     </div>
   );
 };

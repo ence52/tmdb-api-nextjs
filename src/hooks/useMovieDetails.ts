@@ -3,11 +3,13 @@ import {
   fetchMovieDetails,
   fetchMovieImagesById,
   fetchMovieKeywordsById,
+  fetchMovieVideos,
 } from "@/services/MovieService";
 import { Credits, Crew } from "@/types/MovieCredits";
 import { MovieDetails } from "@/types/MovieDetails";
 import { MovieImages } from "@/types/MovieImages";
 import { Keyword } from "@/types/MovieKeywords";
+import { VideoResult } from "@/types/MovieVideos";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -17,6 +19,7 @@ export const useMovieDetails = () => {
   const [credits, setCredits] = useState<Credits | null>(null);
   const [images, setImages] = useState<MovieImages | null>(null);
   const [keywords, setKeywords] = useState<Keyword[]>([]);
+  const [videos, setVideos] = useState<VideoResult[]>([]);
   const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -24,16 +27,18 @@ export const useMovieDetails = () => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const [details, credits, images, keywords] = await Promise.all([
+        const [details, credits, images, keywords, videos] = await Promise.all([
           fetchMovieDetails(Number(id)),
           fetchMovieCredits(Number(id)),
           fetchMovieImagesById(Number(id)),
           fetchMovieKeywordsById(Number(id)),
+          fetchMovieVideos(Number(id)),
         ]);
         setDetails(details);
         setCredits(credits);
         setImages(images);
         setKeywords(keywords);
+        setVideos(videos);
       } catch (err) {
         console.log(err);
       } finally {
@@ -61,6 +66,7 @@ export const useMovieDetails = () => {
     credits,
     images,
     keywords,
+    videos,
     isLoading,
     directorInfo,
     writerInfo,
