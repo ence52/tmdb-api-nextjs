@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { FC, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css/scrollbar";
 import { Navigation, Pagination, Scrollbar } from "swiper/modules";
 import { useMovieDetails } from "@/hooks/useMovieDetails";
-const VideoSlider = () => {
-  const { videos } = useMovieDetails();
+import { VideoResult } from "@/types/MediaVideos";
+const VideoSlider: FC<{ videos: VideoResult[] }> = ({ videos }) => {
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
+
   return (
     <div>
       {videos && (

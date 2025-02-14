@@ -1,8 +1,12 @@
 import { useMovieDetails } from "@/hooks/useMovieDetails";
-import React from "react";
+import React, { FC } from "react";
 
-const TitleComponent = () => {
-  const { details } = useMovieDetails();
+interface TitleProps {
+  title: string;
+  release_date: any;
+}
+
+const TitleComponent: FC<TitleProps> = (details) => {
   if (!details) {
     return;
   }

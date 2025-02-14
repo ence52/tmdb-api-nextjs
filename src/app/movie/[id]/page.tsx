@@ -10,8 +10,8 @@ import MediaSection from "@/components/DetailsPageComponents/MediaSection";
 import ExtraInfoSection from "@/components/DetailsPageComponents/ExtraInfoSection";
 
 const MovieDetailsPage = () => {
-  const { details, credits, isLoading } = useMovieDetails();
-  if (isLoading || !details || !credits) {
+  const { details, credits, isLoading, images, videos } = useMovieDetails();
+  if (isLoading || !details || !credits || !images || !videos) {
     return <div>LOADING</div>;
   }
   //Credits constants
@@ -19,18 +19,28 @@ const MovieDetailsPage = () => {
   return (
     <div className="col-span-5 px-2 py-14 md:px-10 md:grid grid-cols-4 grid-rows-5 ">
       {/* Poster Photo */}
-      <PosterPhoto />
-      <TitleComponent />
-      <InfoSection />
+      <PosterPhoto poster_path={details.poster_path} title={details.title} />
+      <TitleComponent
+        release_date={details.release_date}
+        title={details.title}
+      />
+      <InfoSection
+        genres={details.genres}
+        mediaType="movie"
+        overview={details.overview}
+        runtime={details.runtime}
+        tagline={details.tagline}
+        vote_average={details.vote_average}
+      />
       {/* Credits */}
       <CreditsSection />
       <div className="  py-10  col-span-5 md:grid md:grid-cols-4 flex-col-reverse flex">
         <div className="col-span-3">
           {" "}
           {/* Cast */}
-          <CastSlider />
+          <CastSlider credits={credits} />
           {/* Media */}
-          <MediaSection />
+          <MediaSection images={images} videos={videos} />
         </div>
         {/* Extra Info */}
         <ExtraInfoSection />

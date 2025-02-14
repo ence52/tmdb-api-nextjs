@@ -1,4 +1,4 @@
-export interface MovieImages {
+export interface MediaImages {
   backdrops: Backdrop[];
   id: number;
   logos: Logo[];

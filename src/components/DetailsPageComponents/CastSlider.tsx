@@ -1,11 +1,11 @@
-import React from "react";
+import React, { FC } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import CastComponent from "./CastComponent";
 import { useMovieDetails } from "@/hooks/useMovieDetails";
 import { Navigation, Pagination } from "swiper/modules";
+import { Credits } from "@/types/MediaCredits";
 
-const CastSlider = () => {
-  const { credits } = useMovieDetails();
+const CastSlider: FC<{ credits: Credits }> = ({ credits }) => {
   if (!credits) {
     return;
   }

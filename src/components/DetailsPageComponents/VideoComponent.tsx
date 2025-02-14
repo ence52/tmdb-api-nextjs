@@ -1,4 +1,4 @@
-import { VideoResult } from "@/types/MovieVideos";
+import { VideoResult } from "@/types/MediaVideos";
 import React, { FC } from "react";
 
 const VideoComponent: FC<{ video: VideoResult }> = ({ video }) => {

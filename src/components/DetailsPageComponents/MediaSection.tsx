@@ -1,20 +1,26 @@
 import { useMovieDetails } from "@/hooks/useMovieDetails";
-import React, { useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import ImagesSlider from "./ImagesSlider";
 import PosterSlider from "./PosterSlider";
 import VideoSlider from "./VideoSlider";
+import { VideoResult } from "@/types/MediaVideos";
+import { MediaImages } from "@/types/MediaImages";
 
-const MediaSection = () => {
-  const { images, videos } = useMovieDetails();
+interface MediaProps {
+  videos: VideoResult[];
+  images: MediaImages;
+}
+
+const MediaSection: FC<MediaProps> = (props) => {
   const [activeTab, setActivePage] = useState(0);
 
-  if (!images || !videos) {
+  if (!props.images || !props.videos) {
     return;
   }
   const tabs = [
-    { name: "Videos", length: videos.length },
-    { name: "Backdrops", length: images?.backdrops.length },
-    { name: "Posters", length: images?.posters.length },
+    { name: "Videos", length: props.videos.length },
+    { name: "Backdrops", length: props.images?.backdrops.length },
+    { name: "Posters", length: props.images?.posters.length },
   ];
   return (
     <div className=" space-y-4 pr-10">
@@ -35,9 +41,9 @@ const MediaSection = () => {
         ))}
       </div>
       <>
-        {activeTab === 0 && <VideoSlider />}
-        {activeTab === 1 && <ImagesSlider />}
-        {activeTab === 2 && <PosterSlider />}
+        {activeTab === 0 && <VideoSlider videos={props.videos} />}
+        {activeTab === 1 && <ImagesSlider images={props.images} />}
+        {activeTab === 2 && <PosterSlider images={props.images} />}
       </>
     </div>
   );

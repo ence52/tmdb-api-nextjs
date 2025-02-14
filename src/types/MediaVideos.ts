@@ -1,4 +1,4 @@
-export interface MovieVideos {
+export interface MediaVideos {
   id: number;
   results: VideoResult[];
 }

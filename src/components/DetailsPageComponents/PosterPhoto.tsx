@@ -1,9 +1,13 @@
-import React from "react";
+import React, { FC } from "react";
 import Image from "next/image";
 import { API_W500_PHOTO_URL } from "@/services/Constants";
-import { useMovieDetails } from "@/hooks/useMovieDetails";
-const PosterPhoto = () => {
-  const { details } = useMovieDetails();
+
+interface PosterPhotoProps {
+  title: string;
+  poster_path: string;
+}
+
+const PosterPhoto: FC<PosterPhotoProps> = (details) => {
   if (!details) {
     return;
   }

@@ -1,10 +1,20 @@
 import { useMovieDetails } from "@/hooks/useMovieDetails";
+import { Genre } from "@/types/MovieDetails";
 import { faHourglass3, faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 
-const InfoSection = () => {
-  const { details, formatDuration } = useMovieDetails();
+interface InfoSectionProps {
+  genres: Genre[];
+  vote_average: number;
+  runtime?: number;
+  tagline: string;
+  overview: string;
+  mediaType: string;
+}
+
+const InfoSection = (details: InfoSectionProps) => {
+  const { formatDuration } = useMovieDetails();
   if (!details) {
     return;
   }
@@ -35,12 +45,14 @@ const InfoSection = () => {
           <p>{details.vote_average.toFixed(1)}</p>
         </div>
         {/* Duration */}
-        <div className="flex space-x-2 items-center">
-          <span className="px-4 py-1 bg-themeGray rounded-xl">
-            <FontAwesomeIcon icon={faHourglass3} width={18} />
-          </span>
-          <p>{formatDuration(details.runtime)}</p>
-        </div>
+        {details.runtime && (
+          <div className="flex space-x-2 items-center">
+            <span className="px-4 py-1 bg-themeGray rounded-xl">
+              <FontAwesomeIcon icon={faHourglass3} width={18} />
+            </span>
+            <p>{formatDuration(details.runtime)}</p>
+          </div>
+        )}
       </div>
       {/* Overview */}
       <div className="tracking-wide flex flex-col space-y-2">

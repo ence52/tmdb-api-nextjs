@@ -1,4 +1,4 @@
-export interface MovieKeywords {
+export interface MediaKeywords {
   id: number;
   keywords: Keyword[];
 }

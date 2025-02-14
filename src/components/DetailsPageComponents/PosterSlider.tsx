@@ -1,11 +1,10 @@
-import React from "react";
+import React, { FC } from "react";
 import { Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Image from "next/image";
-import { useMovieDetails } from "@/hooks/useMovieDetails";
 import { API_W780_PHOTO_URL } from "@/services/Constants";
-const ImagesSlider = () => {
-  const { images } = useMovieDetails();
+import { MediaImages } from "@/types/MediaImages";
+const ImagesSlider: FC<{ images: MediaImages }> = ({ images }) => {
   return (
     <div>
       {images && (
