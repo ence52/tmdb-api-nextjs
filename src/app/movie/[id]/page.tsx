@@ -10,7 +10,16 @@ import MediaSection from "@/components/DetailsPageComponents/MediaSection";
 import ExtraInfoSection from "@/components/DetailsPageComponents/ExtraInfoSection";
 
 const MovieDetailsPage = () => {
-  const { details, credits, isLoading, images, videos } = useMovieDetails();
+  const {
+    details,
+    credits,
+    isLoading,
+    images,
+    videos,
+    directorInfo,
+    starsInfo,
+    writerInfo,
+  } = useMovieDetails();
   if (isLoading || !details || !credits || !images || !videos) {
     return <div>LOADING</div>;
   }
@@ -26,14 +35,20 @@ const MovieDetailsPage = () => {
       />
       <InfoSection
         genres={details.genres}
-        mediaType="movie"
         overview={details.overview}
         runtime={details.runtime}
         tagline={details.tagline}
         vote_average={details.vote_average}
       />
       {/* Credits */}
-      <CreditsSection />
+      <CreditsSection
+        props={{
+          credits: credits,
+          starsInfo: starsInfo,
+          directorInfo: directorInfo,
+          writerInfo: writerInfo,
+        }}
+      />
       <div className="  py-10  col-span-5 md:grid md:grid-cols-4 flex-col-reverse flex">
         <div className="col-span-3">
           {" "}

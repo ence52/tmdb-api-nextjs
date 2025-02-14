@@ -1,10 +1,10 @@
-import { Media } from "@/types/Media";
 import React, { FC } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { API_W300_PHOTO_URL } from "@/services/Constants";
+import { MediaCardProps } from "@/types/MediaCardProps";
 
-const MediaCard: FC<{ media: Media; mediaType: string }> = ({
+const MediaCard: FC<{ media: MediaCardProps; mediaType: string }> = ({
   media,
   mediaType,
 }) => {
@@ -19,9 +19,12 @@ const MediaCard: FC<{ media: Media; mediaType: string }> = ({
             unoptimized
             className="object-cover rounded-t-2xl"
             src={
-              media.poster_path === null
-                ? "/images/no_image_placeholder.svg"
-                : `${API_W300_PHOTO_URL}${media.poster_path}`
+              media.poster_path !== null && media.poster_path !== undefined
+                ? `${API_W300_PHOTO_URL}${media.poster_path}`
+                : media.profile_path !== null &&
+                  media.profile_path !== undefined
+                ? `${API_W300_PHOTO_URL}${media.profile_path}`
+                : "/images/no_image_placeholder.svg"
             }
             fill
           />

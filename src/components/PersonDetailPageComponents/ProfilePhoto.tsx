@@ -15,7 +15,11 @@ const ProfilePhoto = () => {
         loading="lazy"
         unoptimized
         className="object-cover rounded-2xl shadow-lg "
-        src={API_W500_PHOTO_URL + details.profile_path}
+        src={
+          details.profile_path === null
+            ? "/images/no_image_placeholder.svg"
+            : API_W500_PHOTO_URL + details.profile_path
+        }
         fill
       />
     </div>

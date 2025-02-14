@@ -10,7 +10,6 @@ interface InfoSectionProps {
   runtime?: number;
   tagline: string;
   overview: string;
-  mediaType: string;
 }
 
 const InfoSection = (details: InfoSectionProps) => {

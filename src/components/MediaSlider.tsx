@@ -1,11 +1,11 @@
 import React, { FC } from "react";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import MovieCard from "./MediaCard";
 import { Media } from "@/types/Media";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import MediaCard from "./MediaCard";
 const MovieSlider: FC<{
   medias: Media[];
   mediaType: string;
@@ -29,7 +29,7 @@ const MovieSlider: FC<{
       >
         {medias.map((media) => (
           <SwiperSlide key={media.id} className="select-none">
-            <MovieCard media={media} mediaType={mediaType} />
+            <MediaCard media={media} mediaType={mediaType} />
           </SwiperSlide>
         ))}
       </Swiper>

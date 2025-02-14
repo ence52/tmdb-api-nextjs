@@ -12,7 +12,7 @@ export interface SeriesDetails {
   last_air_date: string;
   last_episode_to_air: LastEpisodeToAir;
   name: string;
-  next_episode_to_air: any;
+  next_episode_to_air: string;
   networks: Network[];
   number_of_episodes: number;
   number_of_seasons: number;
@@ -72,7 +72,7 @@ export interface Network {
 
 export interface ProductionCompany {
   id: number;
-  logo_path: any;
+  logo_path: string;
   name: string;
   origin_country: string;
 }

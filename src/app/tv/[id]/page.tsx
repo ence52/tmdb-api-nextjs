@@ -9,9 +9,18 @@ import { useSeriesDetails } from "@/hooks/useSeriesDetails";
 import MediaSection from "@/components/DetailsPageComponents/MediaSection";
 
 const SeriesDetailsPage = () => {
-  const { details, isLoading, credits, images, videos, keywords } =
-    useSeriesDetails();
-  if (isLoading || !details || !credits || !images || !videos) {
+  const {
+    details,
+    isLoading,
+    credits,
+    images,
+    videos,
+    keywords,
+    directorInfo,
+    starsInfo,
+    writerInfo,
+  } = useSeriesDetails();
+  if (isLoading || !details || !credits || !images || !videos || !keywords) {
     return <div>LOADING</div>;
   }
   //Credits constants
@@ -26,13 +35,19 @@ const SeriesDetailsPage = () => {
       />
       <InfoSection
         genres={details.genres}
-        mediaType="movie"
         overview={details.overview}
         tagline={details.tagline}
         vote_average={details.vote_average}
       />
       {/* Credits */}
-      <CreditsSection />
+      <CreditsSection
+        props={{
+          credits: credits,
+          starsInfo: starsInfo,
+          directorInfo: directorInfo,
+          writerInfo: writerInfo,
+        }}
+      />
       <div className="  py-10  col-span-5 md:grid md:grid-cols-4 flex-col-reverse flex">
         <div className="col-span-3">
           {" "}

@@ -1,9 +1,8 @@
-import { useMovieDetails } from "@/hooks/useMovieDetails";
 import React, { FC } from "react";
 
 interface TitleProps {
   title: string;
-  release_date: any;
+  release_date: string;
 }
 
 const TitleComponent: FC<TitleProps> = (details) => {

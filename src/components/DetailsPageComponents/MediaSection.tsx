@@ -1,5 +1,4 @@
-import { useMovieDetails } from "@/hooks/useMovieDetails";
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useState } from "react";
 import ImagesSlider from "./ImagesSlider";
 import PosterSlider from "./PosterSlider";
 import VideoSlider from "./VideoSlider";

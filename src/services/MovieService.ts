@@ -1,5 +1,4 @@
 import { Result } from "@/types/Media";
-import { Credits } from "@/types/MediaCredits";
 import { MovieDetails } from "@/types/MovieDetails";
 import { axiosClient } from "./Constants";
 

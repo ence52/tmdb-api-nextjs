@@ -1,13 +1,14 @@
 "use client";
 import {
   fetchMediaImagesById,
+  fetchMediaKeywordsById,
   fetchMediaVideos,
 } from "@/services/MediaService";
 import {
   fetchSeriesCredits,
   fetchSeriesDetails,
 } from "@/services/SeriesService";
-import { Credits } from "@/types/MediaCredits";
+import { Credits, Crew } from "@/types/MediaCredits";
 import { MediaImages } from "@/types/MediaImages";
 import { Keyword } from "@/types/MediaKeywords";
 import { VideoResult } from "@/types/MediaVideos";
@@ -32,17 +33,19 @@ export const useSeriesDetails = () => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const [details, credits, videos, images] = await Promise.all([
+        const [details, credits, videos, images, keywords] = await Promise.all([
           fetchSeriesDetails(Number(id)),
           fetchSeriesCredits(Number(id)),
           fetchMediaVideos(Number(id), "tv"),
           fetchMediaImagesById(Number(id), "tv"),
+          fetchMediaKeywordsById(Number(id), "tv"),
         ]);
 
         setDetails(details);
         setCredits(credits);
         setVideos(videos);
         setImages(images);
+        setKeywords(keywords);
       } catch (error) {
         console.log("error:", error);
       } finally {
@@ -52,7 +55,25 @@ export const useSeriesDetails = () => {
 
     fetchData();
     console.log(details);
-  }, []);
+  }, [id, details]);
 
-  return { details, isLoading, credits, keywords, images, videos };
+  const directorInfo = credits?.crew.find(
+    (person: Crew) => person.job === "Director"
+  );
+  const writerInfo = credits?.crew.find(
+    (person: Crew) => person.job === "Story" || person.job === "Writer"
+  );
+  const starsInfo = credits?.cast.slice(0, 4);
+
+  return {
+    details,
+    isLoading,
+    credits,
+    keywords,
+    images,
+    videos,
+    directorInfo,
+    writerInfo,
+    starsInfo,
+  };
 };

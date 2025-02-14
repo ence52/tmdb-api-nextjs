@@ -1,42 +1,55 @@
 "use client";
+import MediaCard from "@/components/MediaCard";
+import { fetchSearchMulti } from "@/services/SearchService";
+import { MediaCardProps } from "@/types/MediaCardProps";
+import { SearchResult } from "@/types/SearchResult";
+import { useSearchParams } from "next/navigation";
+import React, { Suspense, useEffect, useState } from "react";
 
-import { useMovieDetails } from "@/hooks/useMovieDetails";
-import PosterPhoto from "@/components/DetailsPageComponents/PosterPhoto";
-import TitleComponent from "@/components/DetailsPageComponents/TitleComponent";
-import InfoSection from "@/components/DetailsPageComponents/InfoSection";
-import CreditsSection from "@/components/DetailsPageComponents/CreditsSection";
-import CastSlider from "@/components/DetailsPageComponents/CastSlider";
-import MediaSection from "@/components/DetailsPageComponents/MediaSection";
-import ExtraInfoSection from "@/components/DetailsPageComponents/ExtraInfoSection";
+const Search = () => {
+  const searchParams = useSearchParams();
+  const query = searchParams.get("q");
+  const [searchResults, setMedias] = useState<SearchResult[]>([]);
 
-const MovieDetailsPage = () => {
-  const { details, credits, isLoading } = useMovieDetails();
-  if (isLoading || !details || !credits) {
-    return <div>LOADING</div>;
-  }
-  //Credits constants
+  useEffect(() => {
+    const controller = new AbortController();
+    if (!query) return;
+    const fetchSearch = async () => {
+      if (!query) return;
+      const res = await fetchSearchMulti(query);
+
+      console.log(res);
+      setMedias(res);
+    };
+    fetchSearch();
+    return () => {
+      controller.abort();
+    };
+  }, [query]);
 
   return (
-    <div className="col-span-5 px-2 py-14 md:px-10 md:grid grid-cols-4 grid-rows-5 ">
-      {/* Poster Photo */}
-      <PosterPhoto />
-      <TitleComponent />
-      <InfoSection />
-      {/* Credits */}
-      <CreditsSection />
-      <div className="  py-10  col-span-5 md:grid md:grid-cols-4 flex-col-reverse flex">
-        <div className="col-span-3">
-          {" "}
-          {/* Cast */}
-          <CastSlider />
-          {/* Media */}
-          <MediaSection />
+    <div className="w-full h-full content-center text-center">
+      {searchResults.length === 0 ? (
+        <p className="text-2xl">Film not found</p>
+      ) : (
+        <div className="grid md:grid-cols-5 grid-cols-2  md:gap-4 gap-2 py-10">
+          {searchResults.map((searchResult, i) => (
+            <MediaCard
+              key={i}
+              media={searchResult as MediaCardProps}
+              mediaType={searchResult.media_type}
+            />
+          ))}
         </div>
-        {/* Extra Info */}
-        <ExtraInfoSection />
-      </div>
+      )}
     </div>
   );
 };
 
-export default MovieDetailsPage;
+export default function SearchPage() {
+  return (
+    <Suspense fallback={<p>Loading search...</p>}>
+      <Search />
+    </Suspense>
+  );
+}

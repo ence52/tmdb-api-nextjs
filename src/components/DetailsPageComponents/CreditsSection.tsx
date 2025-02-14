@@ -1,9 +1,16 @@
-import { useMovieDetails } from "@/hooks/useMovieDetails";
+import { Cast, Credits, Crew } from "@/types/MediaCredits";
 import Link from "next/link";
-import React from "react";
+import React, { FC } from "react";
 
-const CreditsSection = () => {
-  const { directorInfo, starsInfo, writerInfo } = useMovieDetails();
+interface CreditsSectionProps {
+  credits: Credits;
+  directorInfo?: Crew;
+  writerInfo?: Crew;
+  starsInfo?: Cast[];
+}
+
+const CreditsSection: FC<{ props: CreditsSectionProps }> = ({ props }) => {
+  const { directorInfo, starsInfo, writerInfo } = props;
   return (
     <div className=" col-span-1 row-span-4 text-lg  justify-between  grid grid-cols-1 grid-rows-3 ">
       {/* Director */}

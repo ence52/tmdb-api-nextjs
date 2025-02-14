@@ -2,8 +2,8 @@ import React, { FC, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css/scrollbar";
 import { Navigation, Pagination, Scrollbar } from "swiper/modules";
-import { useMovieDetails } from "@/hooks/useMovieDetails";
 import { VideoResult } from "@/types/MediaVideos";
+import Image from "next/image";
 const VideoSlider: FC<{ videos: VideoResult[] }> = ({ videos }) => {
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
 
@@ -24,7 +24,9 @@ const VideoSlider: FC<{ videos: VideoResult[] }> = ({ videos }) => {
                 className="relative cursor-pointer w-3/4"
                 onClick={() => setSelectedVideo(video.key)}
               >
-                <img
+                <Image
+                  fill
+                  unoptimized
                   src={`https://img.youtube.com/vi/${video.key}/hqdefault.jpg`}
                   alt="Video thumbnail"
                   className="rounded-lg w-full"
