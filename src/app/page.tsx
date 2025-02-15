@@ -9,9 +9,9 @@ import React, { useEffect, useState } from "react";
 import MovieSlider from "../components/MediaSlider";
 import { fetchPopularMedia, fetchTrendMedia } from "@/services/MediaService";
 import LoadingSpinner from "@/components/LoadingSpinner";
+import BigSlider from "@/components/BigSlider";
 const Main = () => {
   const [movies, setPopularMovies] = useState<Media[]>([]);
-  const [movies2, setTrendingMovies] = useState<Media[]>([]);
   const [movies3, setUpcomingMovies] = useState<Media[]>([]);
   const [movies4, setNowPlayingMovies] = useState<Media[]>([]);
   const [popularSeries, setPopularSeries] = useState<Media[]>([]);
@@ -21,7 +21,7 @@ const Main = () => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const [popular, trending, upcoming, now_playing, popularSeries] =
+        const [popular, upcoming, now_playing, popularSeries] =
           await Promise.all([
             fetchPopularMedia("movie"),
             fetchTrendMedia("movie"),
@@ -31,7 +31,7 @@ const Main = () => {
           ]);
 
         if (popular?.results) setPopularMovies(popular.results);
-        if (trending?.results) setTrendingMovies(trending.results);
+
         if (upcoming?.results) setUpcomingMovies(upcoming.results);
         if (now_playing?.results) setNowPlayingMovies(now_playing.results);
         if (popularSeries?.results) setPopularSeries(popularSeries.results);
@@ -49,11 +49,17 @@ const Main = () => {
     return <LoadingSpinner />;
   }
   return (
-    <div className="flex flex-col">
-      <MovieSlider mediaType="movie" title="Popular Movies" medias={movies} />
-      <MovieSlider mediaType="movie" title="Trending Movies" medias={movies2} />
-      <MovieSlider mediaType="movie" title="Upcoming Movies" medias={movies3} />
+    <div className="flex flex-col pb-20">
+      <BigSlider />
+      <p className="text-2xl md:text-4xl font-bold md:mt-10 mt-4 tracking-widest">
+        Movies
+      </p>
+      <MovieSlider mediaType="movie" title="Popular" medias={movies} />
+      <MovieSlider mediaType="movie" title="Upcoming" medias={movies3} />
       <MovieSlider mediaType="movie" title="Now Playing" medias={movies4} />
+      <p className="text-2xl md:text-4xl font-semibold mt-10 tracking-widest">
+        TV Shows
+      </p>
       <MovieSlider
         mediaType="tv"
         title="Popular Series"

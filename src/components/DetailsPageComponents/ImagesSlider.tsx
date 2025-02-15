@@ -2,7 +2,7 @@ import React, { FC, useState } from "react";
 import { Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Image from "next/image";
-import { API_W780_PHOTO_URL } from "@/services/Constants";
+import { API_W1280_PHOTO_URL, API_W780_PHOTO_URL } from "@/services/Constants";
 import { MediaImages } from "@/types/MediaImages";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
@@ -26,9 +26,7 @@ const ImagesSlider: FC<{ images: MediaImages }> = ({ images }) => {
             <SwiperSlide key={i} className="select-none">
               <div
                 className="aspect-video relative w-full cursor-pointer"
-                onClick={() =>
-                  setSelectedImage(API_W780_PHOTO_URL + image.file_path)
-                }
+                onClick={() => setSelectedImage(image.file_path)}
               >
                 <Image
                   src={API_W780_PHOTO_URL + image.file_path}
@@ -54,7 +52,7 @@ const ImagesSlider: FC<{ images: MediaImages }> = ({ images }) => {
             </button>
 
             <Image
-              src={selectedImage}
+              src={API_W1280_PHOTO_URL + selectedImage}
               alt="Selected"
               layout="fill"
               unoptimized

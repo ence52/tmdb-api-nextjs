@@ -12,8 +12,8 @@ const MovieSlider: FC<{
   title: string;
 }> = ({ medias, title, mediaType }) => {
   return (
-    <div className="overflow-x-auto whitespace-nowrap  gap-6 pt-10 space-y-4">
-      <p className="text-2xl md:text-3xl font-semibold">{title}</p>
+    <div className="overflow-x-auto whitespace-nowrap  gap-6 md:pt-10 pt-4 space-y-4">
+      <p className="text-xl md:text-2xl font-semibold">{title}</p>
       <Swiper
         spaceBetween={10}
         slidesPerView={5}

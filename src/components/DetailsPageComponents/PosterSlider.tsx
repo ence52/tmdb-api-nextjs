@@ -22,6 +22,13 @@ const ImagesSlider: FC<{ images: MediaImages }> = ({ images }) => {
           slidesPerView={4.3}
           modules={[Navigation, Pagination]}
           loop={false}
+          breakpoints={{
+            320: { slidesPerView: 2.3, spaceBetween: 10 },
+            480: { slidesPerView: 2.6, spaceBetween: 15 },
+            640: { slidesPerView: 3, spaceBetween: 15 },
+            1024: { slidesPerView: 3.8, spaceBetween: 20 },
+            1280: { slidesPerView: 4.3, spaceBetween: 20 },
+          }}
         >
           {images.posters.slice(0, 5).map((image, i) => (
             <SwiperSlide key={i} className="select-none">

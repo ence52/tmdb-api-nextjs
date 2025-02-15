@@ -23,6 +23,15 @@ export const fetchTrendMedia = async (type: string): Promise<Result> => {
   }
 };
 
+export const fetchTrendAllMedia = async (): Promise<Result> => {
+  try {
+    const response = await axiosClient.get<Result>(`/trending/all/week`);
+    return response.data;
+  } catch {
+    throw new Error(`Failed to fetch trend medias.`);
+  }
+};
+
 export const fetchMediaCredits = async (
   id: number,
   type: string

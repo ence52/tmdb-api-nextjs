@@ -22,7 +22,7 @@ const MediaSection: FC<MediaProps> = (props) => {
     { name: "Posters", length: props.images?.posters.length },
   ];
   return (
-    <div className=" space-y-4 pr-10">
+    <div className=" space-y-4 md:pr-10 ">
       <p className="text-2xl font-bold">Media</p>
       {/* Buttons */}
       <div className="flex text-xl space-x-6">

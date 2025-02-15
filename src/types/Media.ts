@@ -14,6 +14,7 @@ export interface Media {
   original_title?: string;
   original_name?: string;
   overview: string;
+  media_type?: string;
   genre_ids: number[];
   popularity: number;
   vote_average: number;
