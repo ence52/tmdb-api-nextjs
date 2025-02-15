@@ -10,8 +10,8 @@ const MediaCard: FC<{ media: MediaCardProps; mediaType: string }> = ({
 }) => {
   return (
     <Link href={`/${mediaType}/${media.id}`}>
-      <div className="rounded-2xl overflow-hidden shadow-md duration-700">
-        <div className="aspect-[2/3] w-full relative">
+      <div className="rounded-2xl overflow-hidden shadow-md duration-700 flex ">
+        <div className="aspect-[2/3] w-full relative ">
           <Image
             alt={media.title || media.name || "unknown"}
             sizes="lg"
@@ -28,6 +28,10 @@ const MediaCard: FC<{ media: MediaCardProps; mediaType: string }> = ({
             }
             fill
           />
+          <div className="absolute inset-0 bg-gradient-to-t h-20 from-black via-black/60 self-end to-black/transparent"></div>
+          <div className="absolute h-full flex flex-col  justify-end p-2  ">
+            <p>{media.name || media.title}</p>
+          </div>
         </div>
       </div>
     </Link>

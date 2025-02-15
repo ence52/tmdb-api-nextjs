@@ -8,6 +8,7 @@ import CreditsSection from "@/components/DetailsPageComponents/CreditsSection";
 import CastSlider from "@/components/DetailsPageComponents/CastSlider";
 import MediaSection from "@/components/DetailsPageComponents/MediaSection";
 import ExtraInfoSection from "@/components/DetailsPageComponents/ExtraInfoSection";
+import LoadingSpinner from "@/components/LoadingSpinner";
 
 const MovieDetailsPage = () => {
   const {
@@ -21,7 +22,7 @@ const MovieDetailsPage = () => {
     writerInfo,
   } = useMovieDetails();
   if (isLoading || !details || !credits || !images || !videos) {
-    return <div>LOADING</div>;
+    return <LoadingSpinner />;
   }
   //Credits constants
 

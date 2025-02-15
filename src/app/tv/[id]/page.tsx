@@ -7,6 +7,7 @@ import CastSlider from "@/components/DetailsPageComponents/CastSlider";
 import { useSeriesDetails } from "@/hooks/useSeriesDetails";
 import MediaSection from "@/components/DetailsPageComponents/MediaSection";
 import ExtraInfoComponent from "@/components/DetailsPageComponents/ExtraInfoComponent";
+import LoadingSpinner from "@/components/LoadingSpinner";
 
 const SeriesDetailsPage = () => {
   const {
@@ -21,7 +22,7 @@ const SeriesDetailsPage = () => {
     writerInfo,
   } = useSeriesDetails();
   if (isLoading || !details || !credits || !images || !videos) {
-    return <div>LOADING</div>;
+    return <LoadingSpinner />;
   }
   //Credits constants
 

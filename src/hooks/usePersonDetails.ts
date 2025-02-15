@@ -1,19 +1,23 @@
 import {
   fetchPersonDetails,
   fetchPersonCredits,
+  fetchPersonImages,
 } from "@/services/PersonService";
 import { Crew, Cast } from "@/types/PersonCredits";
-import { PersonCredits } from "@/types/PersonCredits";
 import { PersonDetails } from "@/types/PersonDetails";
+import { Profile } from "@/types/PersonImages";
 import { useParams } from "next/navigation";
 import { useState, useEffect } from "react";
 
 export const usePersonDetails = () => {
   const { id } = useParams();
   const [details, setPersonDetails] = useState<PersonDetails | null>(null);
-  const [credits, setPersonCredits] = useState<PersonCredits | null>(null);
+  const [castCredits, setPersonCastCredits] = useState<Cast[] | null>(null);
+  const [crewCredits, setPersonCrewCredits] = useState<Crew[] | null>(null);
   const [knownFor, setKnownfor] = useState<(Crew | Cast)[] | null>(null);
   const [knownCredits, setKnownCredits] = useState<number>(0);
+  const [images, setImages] = useState<Profile[]>([]);
+
   const [isLoading, setLoading] = useState(false);
   useEffect(() => {
     if (!id) return;
@@ -21,39 +25,34 @@ export const usePersonDetails = () => {
       setLoading(true);
 
       try {
-        const [details, credits] = await Promise.all([
+        const [details, credits, images] = await Promise.all([
           fetchPersonDetails(Number(id)),
           fetchPersonCredits(Number(id)),
+          fetchPersonImages(Number(id)),
         ]);
 
-        const sortedCredits = {
-          ...credits,
-          cast: credits.cast
-            .filter((movie) => movie.release_date)
-            .sort(
-              (a, b) =>
-                new Date(b.release_date).getTime() -
-                new Date(a.release_date).getTime()
-            ),
-        };
-        const allMovies = [...credits.cast, ...credits.crew];
+        const sortedCastCredits = sortByDate(credits.cast);
+        const sortedCrewCredits = sortByDate(credits.crew);
+        const allMedias = [...credits.cast, ...credits.crew];
         const knownForMovies = Array.from(
           new Map(
-            allMovies
-              .filter((movie) => movie.popularity && movie.vote_count > 500)
+            allMedias
+              .filter((media) => media.popularity && media.vote_count > 500)
               .sort(
                 (a, b) =>
                   b.popularity * 0.7 +
                   b.vote_count * 0.3 -
                   (a.popularity * 0.7 + a.vote_count * 0.3)
               )
-              .map((movie) => [movie.id, movie])
+              .map((media) => [media.id, media])
           ).values()
         ).slice(0, 6);
-        setKnownCredits(allMovies.length);
+        setKnownCredits(allMedias.length);
         setPersonDetails(details);
-        setPersonCredits(sortedCredits);
+        setPersonCastCredits(sortedCastCredits);
+        setPersonCrewCredits(sortedCrewCredits);
         setKnownfor(knownForMovies);
+        setImages(images);
       } catch (err) {
         console.log(err);
       } finally {
@@ -80,5 +79,34 @@ export const usePersonDetails = () => {
     }
   };
 
-  return { pickGender, details, credits, knownCredits, knownFor, isLoading };
+  const sortByDate = <
+    T extends { release_date?: string; first_air_date?: string }
+  >(
+    items: T[]
+  ) => {
+    return items.sort((a, b) => {
+      const dateA =
+        a.release_date || a.first_air_date
+          ? new Date(a.release_date || a.first_air_date!).getTime()
+          : -Infinity;
+
+      const dateB =
+        b.release_date || b.first_air_date
+          ? new Date(b.release_date || b.first_air_date!).getTime()
+          : -Infinity;
+
+      return dateB - dateA;
+    });
+  };
+
+  return {
+    pickGender,
+    details,
+    castCredits,
+    crewCredits,
+    knownCredits,
+    knownFor,
+    isLoading,
+    images,
+  };
 };

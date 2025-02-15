@@ -8,6 +8,7 @@ import React, { useEffect, useState } from "react";
 
 import MovieSlider from "../components/MediaSlider";
 import { fetchPopularMedia, fetchTrendMedia } from "@/services/MediaService";
+import LoadingSpinner from "@/components/LoadingSpinner";
 const Main = () => {
   const [movies, setPopularMovies] = useState<Media[]>([]);
   const [movies2, setTrendingMovies] = useState<Media[]>([]);
@@ -45,7 +46,7 @@ const Main = () => {
   }, []);
 
   if (isLoading) {
-    return <div>LOADING</div>;
+    return <LoadingSpinner />;
   }
   return (
     <div className="flex flex-col">
