@@ -21,7 +21,6 @@ const SeriesDetailsPage = () => {
     writerInfo,
   } = useSeriesDetails();
   if (isLoading || !details || !credits || !images || !videos) {
-    console.log(keywords);
     return <div>LOADING</div>;
   }
   //Credits constants

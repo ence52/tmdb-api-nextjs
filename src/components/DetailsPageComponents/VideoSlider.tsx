@@ -3,7 +3,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css/scrollbar";
 import { Navigation, Pagination, Scrollbar } from "swiper/modules";
 import { VideoResult } from "@/types/MediaVideos";
-import Image from "next/image";
 const VideoSlider: FC<{ videos: VideoResult[] }> = ({ videos }) => {
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
 
