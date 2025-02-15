@@ -6,7 +6,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import MediaCard from "./MediaCard";
-const MovieSlider: FC<{
+const MediaSlider: FC<{
   medias: Media[];
   mediaType: string;
   title: string;
@@ -37,4 +37,4 @@ const MovieSlider: FC<{
   );
 };
 
-export default MovieSlider;
+export default MediaSlider;

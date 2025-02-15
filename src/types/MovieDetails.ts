@@ -1,3 +1,5 @@
+import { Genre } from "./Genre";
+
 export interface MovieDetails {
   adult: boolean;
   backdrop_path: string;
@@ -25,11 +27,6 @@ export interface MovieDetails {
   video: boolean;
   vote_average: number;
   vote_count: number;
-}
-
-export interface Genre {
-  id: number;
-  name: string;
 }
 
 export interface BelongsToCollection {

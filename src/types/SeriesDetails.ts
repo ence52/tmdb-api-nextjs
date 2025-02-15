@@ -1,3 +1,5 @@
+import { Genre } from "./Genre";
+
 export interface SeriesDetails {
   adult: boolean;
   backdrop_path: string;
@@ -40,11 +42,6 @@ export interface CreatedBy {
   original_name: string;
   gender: number;
   profile_path: string;
-}
-
-export interface Genre {
-  id: number;
-  name: string;
 }
 
 export interface LastEpisodeToAir {

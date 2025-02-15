@@ -27,7 +27,7 @@ const Search = () => {
   }, [query]);
 
   return (
-    <div className="w-full h-full content-center text-center">
+    <div className="w-full h-full content-start text-center">
       {searchResults.length === 0 ? (
         <p className="text-2xl">Film not found</p>
       ) : (

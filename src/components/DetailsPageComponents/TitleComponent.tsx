@@ -10,7 +10,7 @@ const TitleComponent: FC<TitleProps> = (details) => {
     return;
   }
   return (
-    <div className="col-span-3 row-span-1 flex items-center md:px-4 ">
+    <div className="col-span-3 row-span-1 flex items-center md:px-4 mt-5 md:mt-0">
       {/* Title */}
       <p className="text-4xl  tracking-wider font-semibold">
         {details.title} ({details.release_date.slice(0, 4)})

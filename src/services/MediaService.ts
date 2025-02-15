@@ -1,31 +1,33 @@
-import { Result } from "@/types/Media";
+import { MediaResult } from "@/types/Media";
 import { axiosClient } from "./Constants";
 import { Credits } from "@/types/MediaCredits";
 import { Keyword, MediaKeywords } from "@/types/MediaKeywords";
 import { MediaVideos, VideoResult } from "@/types/MediaVideos";
 import { MediaImages } from "@/types/MediaImages";
 
-export const fetchPopularMedia = async (type: string): Promise<Result> => {
+export const fetchPopularMedia = async (type: string): Promise<MediaResult> => {
   try {
-    const response = await axiosClient.get<Result>(`/${type}/popular`);
+    const response = await axiosClient.get<MediaResult>(`/${type}/popular`);
     return response.data;
   } catch {
     throw new Error(`Failed to fetch popular ${type}s.`);
   }
 };
 
-export const fetchTrendMedia = async (type: string): Promise<Result> => {
+export const fetchTrendMedia = async (type: string): Promise<MediaResult> => {
   try {
-    const response = await axiosClient.get<Result>(`/trending/${type}/week`);
+    const response = await axiosClient.get<MediaResult>(
+      `/trending/${type}/week`
+    );
     return response.data;
   } catch {
     throw new Error(`Failed to fetch trend ${type}s.`);
   }
 };
 
-export const fetchTrendAllMedia = async (): Promise<Result> => {
+export const fetchTrendAllMedia = async (): Promise<MediaResult> => {
   try {
-    const response = await axiosClient.get<Result>(`/trending/all/week`);
+    const response = await axiosClient.get<MediaResult>(`/trending/all/week`);
     return response.data;
   } catch {
     throw new Error(`Failed to fetch trend medias.`);

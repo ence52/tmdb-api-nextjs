@@ -23,7 +23,7 @@ const MediaSection: FC<MediaProps> = (props) => {
   ];
   return (
     <div className=" space-y-4 md:pr-10 ">
-      <p className="text-2xl font-bold">Media</p>
+      <p className="text-2xl font-bold md:mt-0 mt-5">Media</p>
       {/* Buttons */}
       <div className="flex text-xl space-x-6">
         {tabs.map((tab, i) => (

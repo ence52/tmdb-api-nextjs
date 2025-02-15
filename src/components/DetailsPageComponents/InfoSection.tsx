@@ -1,5 +1,5 @@
 import { useMovieDetails } from "@/hooks/useMovieDetails";
-import { Genre } from "@/types/MovieDetails";
+import { Genre } from "@/types/Genre";
 import { faHourglass3, faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";

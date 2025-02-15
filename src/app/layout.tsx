@@ -1,26 +1,7 @@
 import type { Metadata } from "next";
-import { Work_Sans } from "next/font/google";
 import "./globals.css";
-import Link from "next/link";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faArrowRightFromBracket,
-  faArrowTrendUp,
-  faClapperboard,
-  faClockRotateLeft,
-  faDownload,
-  faHeart,
-  faHome,
-  faUser,
-  faUserAlt,
-} from "@fortawesome/free-solid-svg-icons";
-import SearchBar from "@/components/SearchBar";
 
-const workSans = Work_Sans({
-  variable: "--font-geist-sans",
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
-  subsets: ["latin"],
-});
+import LayoutBody from "@/components/LayoutBody";
 
 export const metadata: Metadata = {
   title: "FilmScope",
@@ -34,72 +15,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${workSans.className} antialiased md:grid grid-cols-6`}>
-        <div className="col-span-1 bg-themeBlack flex-col h-full px-8 space-y-10 md:py-10 pt-10">
-          <div className="flex space-x-4 md:py-4 items-center  ">
-            <FontAwesomeIcon icon={faClapperboard} className="w-12" />
-            <Link
-              href="/"
-              className="text-4xl font-semibold flex tracking-wide"
-            >
-              FilmScope
-            </Link>
-          </div>
-          <div className="hidden md:block space-y-6">
-            {/* Menu Section */}
-            <div className="flex-col  flex">
-              <p className="text-2xl font-semibold mb-2">Menu</p>
-              <Link href="/" className="navbar-btn">
-                <FontAwesomeIcon icon={faHome} className="w-6" />
-                <p>Home</p>
-              </Link>
-              <Link href="/" className="navbar-btn">
-                <FontAwesomeIcon icon={faArrowTrendUp} className="w-6" />
-                <p>Trending</p>
-              </Link>
-              <Link href="/" className="navbar-btn">
-                <FontAwesomeIcon icon={faUser} className="w-6" />
-                <p>Artists</p>
-              </Link>
-            </div>
-            {/*My Library Section*/}
-            <div className="flex-col  flex">
-              <p className="text-2xl font-semibold mb-2 ">My Library</p>
-              <Link href="/" className="navbar-btn">
-                <FontAwesomeIcon icon={faClockRotateLeft} className="w-6" />
-                <p>Recently</p>
-              </Link>
-              <Link href="/" className="navbar-btn ">
-                <FontAwesomeIcon icon={faHeart} className="w-6" />
-                <p>Favorite</p>
-              </Link>
-              <Link href="/" className="navbar-btn ">
-                <FontAwesomeIcon icon={faDownload} className="w-6" />
-                <p>Download</p>
-              </Link>
-            </div>
-            {/* Settings */}
-            <div className="flex-col  flex">
-              <p className="text-2xl font-semibold mb-2">Settings</p>
-              <Link href="/" className="navbar-btn">
-                <FontAwesomeIcon icon={faUserAlt} className="w-6" />
-                <p>Account</p>
-              </Link>
-              <Link href="/" className="navbar-btn">
-                <FontAwesomeIcon
-                  icon={faArrowRightFromBracket}
-                  className="w-6"
-                />
-                <p>Log Out</p>
-              </Link>
-            </div>
-          </div>
-        </div>
-        <div className="col-span-5 md:px-10 px-2">
-          <SearchBar />
-          {children}
-        </div>
-      </body>
+      <LayoutBody>{children}</LayoutBody>
     </html>
   );
 }

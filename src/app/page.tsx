@@ -6,8 +6,8 @@ import {
 import { Media } from "@/types/Media";
 import React, { useEffect, useState } from "react";
 
-import MovieSlider from "../components/MediaSlider";
-import { fetchPopularMedia, fetchTrendMedia } from "@/services/MediaService";
+import MediaSlider from "../components/MediaSlider";
+import { fetchPopularMedia } from "@/services/MediaService";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import BigSlider from "@/components/BigSlider";
 const Main = () => {
@@ -24,7 +24,6 @@ const Main = () => {
         const [popular, upcoming, now_playing, popularSeries] =
           await Promise.all([
             fetchPopularMedia("movie"),
-            fetchTrendMedia("movie"),
             fetchUpcomingMovies("movie"),
             fetchNowOnCinemasMovies(),
             fetchPopularMedia("tv"),
@@ -54,13 +53,13 @@ const Main = () => {
       <p className="text-2xl md:text-4xl font-bold md:mt-10 mt-4 tracking-widest">
         Movies
       </p>
-      <MovieSlider mediaType="movie" title="Popular" medias={movies} />
-      <MovieSlider mediaType="movie" title="Upcoming" medias={movies3} />
-      <MovieSlider mediaType="movie" title="Now Playing" medias={movies4} />
+      <MediaSlider mediaType="movie" title="Popular" medias={movies} />
+      <MediaSlider mediaType="movie" title="Upcoming" medias={movies3} />
+      <MediaSlider mediaType="movie" title="Now Playing" medias={movies4} />
       <p className="text-2xl md:text-4xl font-semibold mt-10 tracking-widest">
         TV Shows
       </p>
-      <MovieSlider
+      <MediaSlider
         mediaType="tv"
         title="Popular Series"
         medias={popularSeries}

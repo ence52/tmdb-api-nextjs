@@ -21,8 +21,12 @@ const MovieDetailsPage = () => {
     starsInfo,
     writerInfo,
   } = useMovieDetails();
-  if (isLoading || !details || !credits || !images || !videos) {
+  if (isLoading || !details) {
     return <LoadingSpinner />;
+  }
+
+  if (!credits || !images || !videos) {
+    return;
   }
   //Credits constants
 

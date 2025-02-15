@@ -3,6 +3,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css/scrollbar";
 import { Navigation, Pagination, Scrollbar } from "swiper/modules";
 import { VideoResult } from "@/types/MediaVideos";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlay } from "@fortawesome/free-solid-svg-icons";
 const VideoSlider: FC<{ videos: VideoResult[] }> = ({ videos }) => {
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
 
@@ -29,9 +31,11 @@ const VideoSlider: FC<{ videos: VideoResult[] }> = ({ videos }) => {
                   className="rounded-lg w-full"
                 />
                 <div className="absolute inset-0 flex flex-col justify-center bg-black bg-opacity-50 w-full">
-                  <p className="self-start text-lg  mt-10">{video.name}</p>
-                  <button className="text-white my-auto text-4xl self-center">
-                    ▶
+                  <p className="self-start md:text-lg text-sm  md:mt-10">
+                    {video.name}
+                  </p>
+                  <button className="text-white my-auto md:text-4xl self-center">
+                    <FontAwesomeIcon icon={faPlay} />
                   </button>
                 </div>
               </div>
