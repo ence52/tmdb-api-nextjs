@@ -7,7 +7,7 @@ import React from "react";
 interface InfoSectionProps {
   genres: Genre[];
   vote_average: number;
-  runtime?: number;
+  runtime: number;
   tagline: string;
   overview: string;
 }

@@ -1,6 +1,7 @@
 export interface MediaKeywords {
   id: number;
-  keywords: Keyword[];
+  keywords?: Keyword[];
+  results?: Keyword[];
 }
 
 export interface Keyword {

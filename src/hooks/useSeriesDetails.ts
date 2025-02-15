@@ -18,12 +18,12 @@ import { useEffect, useState } from "react";
 
 export const useSeriesDetails = () => {
   const { id } = useParams();
-  const [isLoading, setLoading] = useState(false);
   const [details, setDetails] = useState<SeriesDetails | null>(null);
   const [credits, setCredits] = useState<Credits | null>(null);
   const [images, setImages] = useState<MediaImages | null>(null);
   const [keywords, setKeywords] = useState<Keyword[]>([]);
   const [videos, setVideos] = useState<VideoResult[]>([]);
+  const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
     if (!id) {
@@ -54,8 +54,7 @@ export const useSeriesDetails = () => {
     };
 
     fetchData();
-    console.log(details);
-  }, [id, details]);
+  }, [id]);
 
   const directorInfo = credits?.crew.find(
     (person: Crew) => person.job === "Director"

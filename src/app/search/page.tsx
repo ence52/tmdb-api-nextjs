@@ -18,7 +18,6 @@ const Search = () => {
       if (!query) return;
       const res = await fetchSearchMulti(query);
 
-      console.log(res);
       setMedias(res);
     };
     fetchSearch();

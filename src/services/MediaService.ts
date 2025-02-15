@@ -29,7 +29,7 @@ export const fetchMediaCredits = async (
 ): Promise<Credits> => {
   try {
     const response = await axiosClient.get<Credits>(`/${type}/${id}/credits`);
-    return response.data;
+    return response && response.data;
   } catch {
     throw new Error(`Failed to fetch media credits for ID: ${id}.`);
   }
@@ -43,7 +43,8 @@ export const fetchMediaImagesById = async (
     const response = await axiosClient.get<MediaImages>(
       `/${type}/${id}/images`
     );
-    return response.data;
+
+    return response && response.data;
   } catch {
     throw new Error(`Failed to fetch media images for ID: ${id}.`);
   }
@@ -57,7 +58,7 @@ export const fetchMediaKeywordsById = async (
     const response = await axiosClient.get<MediaKeywords>(
       `/${type}/${id}/keywords`
     );
-    return response.data.keywords;
+    return type === "tv" ? response.data.results! : response.data.keywords!;
   } catch {
     throw new Error(`Failed to fetch media keywords for ID: ${id}.`);
   }
@@ -71,7 +72,7 @@ export const fetchMediaVideos = async (
     const response = await axiosClient.get<MediaVideos>(
       `/${type}/${id}/videos`
     );
-    return response.data.results;
+    return response && response.data.results;
   } catch {
     throw new Error(`Failed to fetch media videos for ID: ${id}.`);
   }

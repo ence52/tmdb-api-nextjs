@@ -24,9 +24,7 @@ const VideoSlider: FC<{ videos: VideoResult[] }> = ({ videos }) => {
                 className="relative cursor-pointer w-3/4"
                 onClick={() => setSelectedVideo(video.key)}
               >
-                <Image
-                  fill
-                  unoptimized
+                <img
                   src={`https://img.youtube.com/vi/${video.key}/hqdefault.jpg`}
                   alt="Video thumbnail"
                   className="rounded-lg w-full"
