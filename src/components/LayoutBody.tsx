@@ -50,26 +50,26 @@ function LayoutBody({
             )}
           </button>
         </div>
-        {isMenuActive && (
-          <div className=" space-y-6">
-            {/* Menu Section */}
-            <div className="flex-col  flex">
-              <p className="text-3xl font-semibold mb-2">Menu</p>
-              <Link href="/" className="navbar-btn">
-                <FontAwesomeIcon icon={faHome} className="w-6" />
-                <p>Home</p>
-              </Link>
-              <Link href="/movies" className="navbar-btn">
-                <FontAwesomeIcon icon={faClapperboard} className="w-6" />
-                <p>Movies</p>
-              </Link>
-              <Link href="/series" className="navbar-btn">
-                <FontAwesomeIcon icon={faTvAlt} className="w-6" />
-                <p>Series</p>
-              </Link>
-            </div>
+        <div
+          className={`space-y-6 ${isMenuActive ? `block` : `md:block hidden`}`}
+        >
+          {/* Menu Section */}
+          <div className="flex-col  flex">
+            <p className="text-3xl font-semibold mb-2">Menu</p>
+            <Link href="/" className="navbar-btn">
+              <FontAwesomeIcon icon={faHome} className="w-6" />
+              <p>Home</p>
+            </Link>
+            <Link href="/movies" className="navbar-btn">
+              <FontAwesomeIcon icon={faClapperboard} className="w-6" />
+              <p>Movies</p>
+            </Link>
+            <Link href="/series" className="navbar-btn">
+              <FontAwesomeIcon icon={faTvAlt} className="w-6" />
+              <p>Series</p>
+            </Link>
           </div>
-        )}
+        </div>
         {/* Genres */}
         <GenresSection />
       </div>
