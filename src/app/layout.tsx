@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     url: "https://filmscope.vercel.app",
   },
   twitter: {
-    card: "summary_large_image",
+    card: "summary",
     title: "FilmScope - The Ultimate Guide to Movies & TV Shows",
     description:
       "Discover detailed information about movies, TV shows, actors, and more!",
