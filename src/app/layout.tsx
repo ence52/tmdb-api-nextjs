@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 import LayoutBody from "@/components/LayoutBody";
+import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
   title: "FilmScope",
@@ -33,6 +34,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <LayoutBody>{children}</LayoutBody>
+      <Analytics />
     </html>
   );
 }
