@@ -26,7 +26,10 @@ export default function RootLayout({
           property="og:description"
           content="Discover detailed information about movies, TV shows, actors, and more!"
         />
-        <meta property="og:image" content="/og_image.png" />
+        <meta
+          property="og:image"
+          content="https://filmscope.vercel.app/images/og_image.png"
+        />
         {/* public/og_image.png */}
         <meta property="og:url" content="https://filmscope.vercel.app" />
         <meta property="og:type" content="website" />
@@ -37,7 +40,10 @@ export default function RootLayout({
           name="twitter:description"
           content="Discover detailed information about movies, TV shows, actors, and more!"
         />
-        <meta name="twitter:image" content="/og_image.png" />
+        <meta
+          name="twitter:image"
+          content="https://filmscope.vercel.app/images/og_image.png"
+        />
         {/* public/og_image.png */}
       </Head>
 
