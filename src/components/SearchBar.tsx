@@ -6,16 +6,16 @@ import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
 const SearchBar = () => {
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState<string | null>(null);
   const router = useRouter();
   const [isClient, setIsClient] = useState(false);
   useEffect(() => {
     setIsClient(true);
-    if (query === "") {
+    if (query !== null) {
       router.replace("/");
     }
 
-    if (query.trim()) {
+    if (query?.trim()) {
       router.push(`/search?q=${query}`);
     }
   }, [query, router]);
