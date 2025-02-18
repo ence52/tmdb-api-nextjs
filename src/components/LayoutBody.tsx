@@ -5,6 +5,7 @@ import {
   faHome,
   faTvAlt,
   faXmark,
+  faFilm,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
@@ -29,16 +30,16 @@ function LayoutBody({
     <body className={`${workSans.className} antialiased md:grid grid-cols-6`}>
       <div className="col-span-1 bg-themeBlack flex-col h-full px-8 space-y-10 md:py-10 pt-10">
         <div className="flex items-center justify-between ">
-          <div className="flex md:space-x-4 items-center">
-            {" "}
-            <FontAwesomeIcon icon={faClapperboard} className="w-12" />
-            <Link
-              href="/"
-              className="text-4xl font-semibold flex tracking-wide"
-            >
-              FilmScope
-            </Link>
-          </div>
+          <Link
+            href={"/"}
+            className="text-4xl font-semibold flex tracking-wide"
+          >
+            <div className="flex md:space-x-4 items-center">
+              <FontAwesomeIcon icon={faFilm} className="aspect-square h-10 " />
+              <p>FilmScope</p>
+            </div>
+          </Link>
+
           <button
             className="md:hidden block "
             onClick={() => setActive(!isMenuActive)}

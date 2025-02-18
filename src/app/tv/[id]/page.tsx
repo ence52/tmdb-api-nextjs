@@ -60,7 +60,6 @@ const SeriesDetailsPage = () => {
       />
       <div className="  py-10  col-span-5 md:grid md:grid-cols-4 flex-col-reverse flex">
         <div className="col-span-3">
-          {" "}
           {/* Cast */}
           <CastSlider credits={credits} />
           {/* Media */}

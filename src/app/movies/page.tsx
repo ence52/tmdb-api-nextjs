@@ -1,4 +1,5 @@
 "use client";
+import LoadingSpinner from "@/components/LoadingSpinner";
 import MediaSlider from "@/components/MediaSlider";
 import { fetchPopularMedia } from "@/services/MediaService";
 import {
@@ -15,8 +16,9 @@ const MoviesPage = () => {
   const [popular, setPopular] = useState<Media[]>([]);
   const [toprated, setToprated] = useState<Media[]>([]);
   const [upcoming, setUpcoming] = useState<Media[]>([]);
-
+  const [isLoading, setLoading] = useState(false);
   useEffect(() => {
+    setLoading(true);
     const fetchData = async () => {
       try {
         const [nowPlaying, popular, toprated, upcoming] = await Promise.all([
@@ -32,11 +34,16 @@ const MoviesPage = () => {
         setUpcoming(upcoming);
       } catch (error) {
         console.log("error", error);
+      } finally {
+        setLoading(false);
       }
     };
     fetchData();
   }, []);
 
+  if (isLoading) {
+    return <LoadingSpinner />;
+  }
   return (
     <div className="flex flex-col pb-20">
       <MediaSlider mediaType="movie" title="On Cinemas" medias={nowPlaying} />
