@@ -28,7 +28,7 @@ export default function RootLayout({
         />
         <meta
           property="og:image"
-          content="https://filmscope.vercel.app/images/og_image.png"
+          content="https://filmscope.vercel.app/og_image.png"
         />
         {/* public/og_image.png */}
         <meta property="og:url" content="https://filmscope.vercel.app" />
@@ -42,7 +42,7 @@ export default function RootLayout({
         />
         <meta
           name="twitter:image"
-          content="https://filmscope.vercel.app/images/og_image.png"
+          content="https://filmscope.vercel.app/og_image.png"
         />
         {/* public/og_image.png */}
       </Head>
