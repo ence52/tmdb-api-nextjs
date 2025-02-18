@@ -31,10 +31,10 @@ export default function RootLayout({
           content="https://filmscope.vercel.app/og_image.png"
         />
         {/* public/og_image.png */}
-        <meta property="og:url" content="https://filmscope.vercel.app" />
+        <meta property="og:url" content="https://filmscope.vercel.app/" />
         <meta property="og:type" content="website" />
         {/* Twitter Card Meta Tags */}
-        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:card" content="summary" />
         <meta name="twitter:title" content="Movie & TV Encyclopedia" />
         <meta
           name="twitter:description"
